@@ -1,0 +1,22 @@
+import { WeatherData } from "../App";
+
+const MainData = ({ data }: { data: WeatherData | null }) => {
+  return (
+    <section className="flex gap-5 items-center flex-col mb-10 mt-10">
+      <p data-testid="name" className="text-6xl text-slate-950 font-medium">
+        {data?.name}
+      </p>
+      {data?.weather ? (
+        <p className="text-xl text-slate-950 py-2 px-7 rounded-xl">
+          {data?.weather[0].description}
+        </p>
+      ) : null}
+      {data?.main ? (
+        <h1 className="text-9xl text-slate-950 font-bold">
+          {data?.main.temp.toFixed(0)} °C
+        </h1>
+      ) : null}
+    </section>
+  );
+};
+export default MainData;
