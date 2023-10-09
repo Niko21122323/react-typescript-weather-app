@@ -136,5 +136,5 @@ Received:
 
 Array [
 - [Function wrap],
-+ "https://api.openweathermap.org/data/2.5/weather?q=skopje&units=metric&appid=95fc4f99d8a217a6fd2512dbf4cb68cb",
++ "https://api.openweathermap.org/data/2.5/weather?q=skopje&units=metric&appid=95fc4f99d8a217a6fd2512dbf4cb68cb",.
 ]

@@ -1,8 +1,10 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import { expect, describe, it } from "vitest";
+import { expect, describe, it, vi } from "vitest";
 import { WeatherData } from "../App";
 import userEvent from "@testing-library/user-event";
 import Input from "./Input";
+import axios from "axios";
+import "@testing-library/jest-dom";
 
 const location: string = "skopje";
 let setLocation: (location: string) => void;
@@ -87,5 +89,41 @@ describe("input testing", () => {
     const inputBox = screen.getByRole("textbox");
     userEvent.type(inputBox, "skopje");
     expect(inputBox).toHaveValue("skopje");
+  });
+
+  it("mock", async () => {
+    const axiosMock = vi.spyOn(axios, "get");
+    axiosMock.mockResolvedValueOnce({
+      data: {
+        name: "Skopje",
+        main: {
+          temp: 20,
+          temp_max: 20,
+          temp_min: 20,
+          pressure: 20,
+        },
+        weather: [{ description: "Cloudy" }],
+        wind: {
+          speed: 20,
+        },
+      },
+    });
+
+    const setData = vi.fn();
+    const setLocation = vi.fn();
+
+    const { getByTestId } = render(
+      <Input location={location} setLocation={setLocation} setData={setData} />
+    );
+    const inputElement = getByTestId("input");
+    fireEvent.change(inputElement, { key: "Enter" });
+    fireEvent.keyDown(inputElement, { key: "Enter" });
+
+    await axiosMock.mock.results[0].value;
+
+    expect(axiosMock).toBeCalledWith(axiosMock);
+
+    expect(setData).toHaveBeenCalled();
+    expect(setLocation).toHaveBeenCalledWith("");
   });
 });
