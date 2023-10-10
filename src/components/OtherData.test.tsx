@@ -28,8 +28,9 @@ describe("OtherData.tsx testing", () => {
     const data: WeatherData = {
       main: {
         pressure: 1013,
-        temp: 20,
-        temp_max: 25,
+        temp: 19,
+        temp_max: 20,
+        temp_min: 10,
       },
       name: "London",
       weather: [
@@ -45,5 +46,8 @@ describe("OtherData.tsx testing", () => {
     const { getByText } = render(<OtherData data={data} />);
 
     expect(getByText("1013%")).toBeInTheDocument();
+    expect(getByText("20 C")).toBeInTheDocument();
+    expect(getByText("10 C")).toBeInTheDocument();
+    expect(getByText("10 kph")).toBeInTheDocument();
   });
 });

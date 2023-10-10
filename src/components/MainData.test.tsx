@@ -18,6 +18,7 @@ describe("Other data", () => {
         pressure: 1013,
         temp: 20,
         temp_max: 25,
+        temp_min: 15,
       },
       name: "London",
       weather: [

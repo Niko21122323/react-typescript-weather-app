@@ -2,8 +2,14 @@ import { WeatherData } from "../App";
 
 const MainData = ({ data }: { data: WeatherData | null }) => {
   return (
-    <section className="flex gap-5 items-center flex-col mb-10 mt-10">
-      <p data-testid="name" className="text-6xl text-slate-950 font-medium">
+    <section
+      data-testid="main-data"
+      className="flex gap-5 items-center flex-col mb-10 mt-10"
+    >
+      <p
+        data-testid="name"
+        className="text-6xl text-slate-950 font-medium text-center"
+      >
         {data?.name}
       </p>
       {data?.weather ? (

@@ -2,7 +2,10 @@ import { WeatherData } from "../App";
 
 const OtherData = ({ data }: { data: WeatherData | null }) => {
   return (
-    <section className="grid grid-cols-2 grid-rows-2 gap-5 w-full">
+    <section
+      data-testid="other-data"
+      className="grid grid-cols-2 grid-rows-2 gap-5 w-full"
+    >
       <div className="bg-slate-950 py-8 text-center rounded-xl h-full">
         {data?.main ? (
           <p className="text-3xl mb-5 text-slate-100">
